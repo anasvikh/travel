@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Мир jQuery</title>
+<link href="styles.css" rel="stylesheet">
+<script src="jquery-3.3.1.js"></script>
+</head>
+<body>
+
+    <header>  
+        <button id="up">Стрелочка</button>
+        <div class="menu">
+            <div class="list">
+                <button id="1" class="menu_button" data-scroll-to="first">Первый</button>
+                <button id="2" class="menu_button" data-scroll-to="second">Gallery</button>
+                <button id="3" class="menu_button" data-scroll-to="third">Третий</button>
+                <button id="4" class="menu_button" data-scroll-to="fourth">Четвертый</button>
+                <button id="5" class="menu_button" data-scroll-to="another">Еще один</button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="first">
+        <h1>First title</h1>
+        <button class="show_text">Показать текст</button>
+        <p>Одним из важных функциональностей jQuery является выборка элементов. Чтобы что-то делать с элементами, манипулировать ими, применять к ним методы jQuery, нам надо сначала их получить.</p>
+    </div>
+    <div id="second">
+        <h1>Gallery</h1>
+    </div>
+        
+        
+    <div id="third">
+        <h1>Third title</h1>
+        <button class="show_text">Показать текст</button>
+    </div>
+        <div id="fourth">
+        <h1>Fourth title</h1>
+        <button class="show_text">Показать текст</button>
+        <p>Одним из важных функциональностей jQuery является выборка элементов. Чтобы что-то делать с элементами, манипулировать ими, применять к ним методы jQuery, нам надо сначала их получить.</p>
+    </div>
+    <div id="another">
+        <h1>Last title</h1>
+        <button class="show_text">Показать текст</button>
+        <p>Одним из важных функциональностей jQuery является выборка элементов. Чтобы что-то делать с элементами, манипулировать ими, применять к ним методы jQuery, нам надо сначала их получить.</p>
+    </div>
+    
+    <div class="selectPicture">
+        <img src="1.jpg">
+        <button id="close"></button>
+        <button id="previous">◄</button>
+        <button id="next">►</button>
+    </div>
+    
+    <form>
+        <div class="form">
+        <label>Enter your name</label>
+        <input>
+        </div>
+        <div class="form">
+        <label>Mobile phone</label>
+        <input>
+        </div>
+        <div class="form">
+        <label>Email</label>
+        <input>
+        </div>
+    </form>
+    
+    <footer>
+            <p>Anastasia Vikhlyaeva, 2018</p>
+    </footer>
+ 
+<script type="text/javascript">
+    
+$(function(){
+    
+    var templateImage = '<div class="picture" ><img src="<%url%>.jpg" data-image-open="<%url%>"><p class="text_pic"><%text%></p></div>';
+    
+    $.getJSON('images.json', function(data){
+        for(var i=0; i < data.images.length; i++){
+            var newImage = templateImage.replace('<%url%>', data.images[i].id);
+            newImage = newImage.replace('<%url%>', data.images[i].id);
+            newImage = newImage.replace('<%text%>', data.images[i].text);
+            $('#second').append(newImage);
+        }
+    });
+    
+    $('.menu_button').click(function(){
+        $(".menu_button").removeClass("active");
+        $(this).addClass("active");
+        let scrollTo = $(this).data('scroll-to');
+        $('html').animate({ scrollTop: $('#' + scrollTo).offset().top-50}, 900, function() { });
+    });
+    
+    $(".show_text").click(function(){
+        $("p", '#first').fadeIn(600);
+    }); 
+    
+    $(window).scroll(function () {
+        $("#up").fadeIn(600);
+    });
+    
+    $('#up').click(function() {
+        $('html, body').animate({scrollTop: 0},500,function() {
+            $("#up").hide();
+        });
+    });
+    
+    $('body').on('mouseenter', '.picture', function() {
+        $('img', this).addClass("imgOpacity");
+        $(".text_pic", this).show();    
+    });
+    
+    $('body').on('mouseleave', '.picture',function() {
+        $('img', this).removeClass('imgOpacity');
+        $('.text_pic', this).hide();
+    });
+    
+    $('body').on('click', '.picture', function() {
+        let imageOpen = $('img', this).data('image-open');
+        $('img', '.selectPicture').remove();        
+        $('.selectPicture').append('<img src="'+imageOpen+'.jpg'+'" data-image-open="'+imageOpen+'">');     
+        $('.selectPicture').fadeIn(200);
+    });
+    
+    $('body').on('click', '#next', function () {
+        var imageOpen = $('img', '.selectPicture').data('image-open');
+        if (imageOpen===6) {
+            imageOpen = 1
+        }
+        else {
+        imageOpen++;
+        }
+        $('img', '.selectPicture').remove();        
+        $('.selectPicture').append('<img src="'+imageOpen+'.jpg" data-image-open="'+imageOpen+'">');     
+        $('.selectPicture').show();
+    });
+    
+    $('body').on('click', '#previous', function () {
+        var imageOpen = $('img', '.selectPicture').data('image-open');
+        if (imageOpen===1) {
+            imageOpen = 6
+        }
+        else {
+        imageOpen--;
+        }
+        $('img', '.selectPicture').remove();        
+        $('.selectPicture').append('<img src="'+imageOpen+'.jpg" data-image-open="'+imageOpen+'">');     
+        $('.selectPicture').show();
+    });
+    
+    $('#close').click(function() {
+        $('.selectPicture').fadeOut(200);
+    })
+});
+</script>
+</body>
+</html>

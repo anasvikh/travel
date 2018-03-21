@@ -1,0 +1,212 @@
+html {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+body {
+    background-color: #e5e5e5;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    margin-left: 50px;
+}
+
+.menu {
+    background-color: darkred;
+    min-height: 0px;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    padding: 0px;
+    z-index: 1000;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 700px;
+    min-height: 0px;
+    
+}
+
+.list button.active{
+    background-color: salmon;
+    border: 2px solid wheat;
+}
+
+.list button:hover {
+    background-color: lightcoral;
+    border: 2px solid lightcoral;
+    color: white;
+}
+
+.list button {
+    display: inline-block;
+    background-color: crimson;
+    width: 100px;
+    padding: 6px 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px; 
+    border: 2px solid crimson;
+    color: white;
+}
+
+div {
+    padding: 20px 50px;
+    min-height: 300px;    
+}
+
+#first {
+    background-color: beige;
+    margin-top: 50px;
+}
+
+#first p {
+    width: 300px;
+    text-align: justify;
+    display: none;
+}
+
+#second {
+    background-color: antiquewhite;
+}
+
+
+#second img {
+    width: 300px;
+    height: 250px;
+    border: 15px solid white;
+    box-shadow:  0 0 20px black;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.picture {
+    position: relative;
+    min-height: 0;
+    width: 315px;
+    margin: 0;
+    display: inline-block;
+}
+
+.imgOpacity {
+    opacity: 0.3;
+}
+
+#second  p {
+    width: 250px;
+    position: absolute;
+    top: 30px;
+    left: 90px;
+    text-align: center;
+    font-size: 26px;
+    display: none;
+}
+
+.selectPicture {
+    padding:0;
+    position: fixed;
+    width: 60%;
+    height: 500px;
+    left:20%;
+    top: 90px;
+    background-color: lavenderblush;
+    z-index: 1000;
+    box-shadow: 0 0 1000px black;
+    display: none;
+}
+
+.selectPicture:hover > button {
+    display: block;
+}
+
+.selectPicture img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    top: 10px;
+    left: 20%;
+}
+
+.selectPicture button {
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    opacity: 0.9;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: none;   
+    font-size: 40px;
+}
+
+#close {
+    background-image: url(exit.png);
+    top: 0;
+    right: 0;
+}
+
+#previous {
+    top: 90%;
+    left: 40%;
+}
+
+#next {
+    top: 90%;
+    right: 40%;
+}
+
+
+
+button {
+    padding: 10px;
+    background-color: oldlace;
+    border: 5px solid darksalmon;
+    border-radius: 5px;
+}
+
+#up {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+    z-index: 900;
+}
+
+form {
+    background-color: darksalmon;
+    width: 210px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: -10;
+}
+
+input {
+    margin: 2px 0;
+}
+
+div.form {
+    min-height: 0px;
+    padding: 10px;
+}
+
+footer {
+    background-color: darkred;
+    color: white;
+    padding: 5px 20px;
+    text-align: right
+    
+}
